@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const faker = require("faker");
+const { faker } = require('@faker-js/faker');
 const bcrypt = require("bcryptjs");
 
 const seedUsers = async (password, numOfUsers, emailAddress) => {
@@ -17,11 +17,7 @@ const seedUsers = async (password, numOfUsers, emailAddress) => {
     const user = {
       password: hashedPassword,
       email,
-      phoneNumber: faker.phone.phoneNumber(),
-      image: faker.image.imageUrl(),
-      accountConfirmed: true,
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      name: faker.name.findName(),
     };
 
     users.push(user);

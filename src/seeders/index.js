@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const logger = require("../helpers/logger");
 require("dotenv").config();
-const { User, Post } = require("../models");
+const { User, Data, BuyOrder } = require("../models");
 const { genericUsers } = require("./mock/users.mock");
-const { getPostsData } = require("./mock/post.mock");
+const { genericData } = require("./mock/data.mock");
+const { genericBuyOrder } = require("./mock/buyOrder.mock");
 
 const connectDB = async () => {
   logger.info("connecting to db");
@@ -38,12 +39,15 @@ const seedDB = async () => {
     await clearDB();
 
     logger.info("Creating Random Users");
-    const fakeusers = await User.create(
-      await genericUsers("password", 20, "primary-user@fbclone.app")
+    const fakeUsers = await User.create(
+      await genericUsers("password", 20, "benjamin@narrative.co")
     );
 
-    logger.info("Creating Random Posts");
-    const meals = await Post.create(await getPostsData(fakeusers));
+    logger.info("Creating Data Points");
+    const fakeData = await Data.create(await genericData());
+
+    logger.info("Creating Buy Orders");
+    const fakeBuyOrder = await BuyOrder.create(await genericBuyOrder(fakeUsers, fakeData));
 
     logger.info("seeder completed");
   } catch (e) {
