@@ -6,8 +6,7 @@ const createBuyOrder = {
       "string.empty": `Max Price cannot be an empty field`,
       "any.required": `Max Price is a required field`,
     }),
-    dataId: Joi.string().required().messages({
-      "string.empty": `Data cannot be an empty field`,
+    dataId: Joi.any().required().messages({
       "any.required": `Data is a required field`,
     }),
     name: Joi.string().required().messages({

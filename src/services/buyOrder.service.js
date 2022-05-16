@@ -46,8 +46,8 @@ const updateBuyOrder = async (buyOrderId, req) => {
   }
 
   Object.assign(buyOrder, req.body);
-  await bid.save();
-  return bid;
+  await buyOrder.save();
+  return buyOrder;
 };
 
 const deleteBuyOrder = async (buyOrderId) => {
