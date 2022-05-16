@@ -10,7 +10,11 @@ const createBuyOrder = {
       "string.empty": `Data cannot be an empty field`,
       "any.required": `Data is a required field`,
     }),
-  }),
+    name: Joi.string().required().messages({
+      "string.empty": `Name cannot be an empty field`,
+      "any.required": `Name is a required field`,
+    }),
+  }).unknown(),
 };
 
 module.exports = {

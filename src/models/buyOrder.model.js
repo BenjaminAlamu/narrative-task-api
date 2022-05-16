@@ -3,6 +3,10 @@ let Schema = mongoose.Schema;
 
 var buyOrderSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     maxPrice: {
       type: String,
       required: true,

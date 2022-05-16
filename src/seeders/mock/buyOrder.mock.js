@@ -7,6 +7,7 @@ const genericBuyOrder = async (users, data) => {
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= 20; i++) {
     const temp = {
+      name: faker.lorem.words(3),
       maxPrice: faker.commerce.price(10000, 20000, 0),
       user: faker.random.arrayElement(users),
       dataId: faker.random.arrayElement(data),

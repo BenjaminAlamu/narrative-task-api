@@ -28,7 +28,8 @@ const fetchBuyOrder = async (criteria = {}, options = {}) => {
   let buyOrder = await BuyOrder.find(criteria)
     .sort(sort)
     .limit(_limit)
-    .populate("user", "name email ")
+    // .populate("user", "name email ")
+    .populate("dataId", "name type ")
     .skip(_limit * (_page - 1));
 
   return { buyOrder, page: _page };

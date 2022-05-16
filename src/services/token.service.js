@@ -55,8 +55,6 @@ const generateAuthTokens = async (user, newUser = false) => {
   const accessTokenExpires = moment().add(30, "days");
   const accessToken = generateToken(user, accessTokenExpires);
 
-  const emailTokenExpires = moment().add(60, "minutes");
-
   const returnTokens = {
     access: {
       token: accessToken,
@@ -64,19 +62,6 @@ const generateAuthTokens = async (user, newUser = false) => {
     },
   };
 
-  if (newUser) {
-    const emailVerificationToken = generateToken(user, emailTokenExpires);
-    await saveToken(
-      emailVerificationToken,
-      user._id,
-      emailTokenExpires,
-      "emailToken"
-    );
-    returnTokens.emailToken = {
-      token: emailVerificationToken,
-      expires: emailTokenExpires.toDate(),
-    };
-  }
 
   return returnTokens;
 };

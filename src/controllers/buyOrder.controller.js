@@ -27,8 +27,8 @@ const edit = catchAsync(async function (req, res) {
 const list = catchAsync(async function (req, res) {
   const filter = { user: req.user, isDeleted: false };
   const options = pick(req.query, ["sortBy", "limit", "page"]);
-  const { buyOrder, page } = await bidService.fetchBuyOrder(filter, options);
-  const count = await bidService.count(filter);
+  const { buyOrder, page } = await buyOrderService.fetchBuyOrder(filter, options);
+  const count = await buyOrderService.count(filter);
   res.status(200).send({
     status: "success",
     message: "Buy Order Fetched successfully",
